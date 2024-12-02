@@ -35,4 +35,5 @@ Route::get('home', function () {
     return view('home');
 })->name('home');
 
-Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+// Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:api')->name('logout');

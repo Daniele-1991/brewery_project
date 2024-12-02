@@ -23,6 +23,10 @@ class AuthController extends Controller
         }
     }
 
-    public function logout(Request $request) { if ($request->user() && $request->user()->token()) { $request->user()->token()->revoke(); return response()->json(['message' => 'Successfully logged out']); } else { return response()->json(['error' => 'User not authenticated'], 401); } }
-    
+    // public function logout(Request $request) { if ($request->user() && $request->user()->token()) { $request->user()->token()->revoke(); return response()->json(['message' => 'Successfully logged out']); } else { return response()->json(['error' => 'User not authenticated'], 401); } }
+    public function logout(Request $request) { 
+        $token = $request->user()->token(); 
+        $token->revoke(); 
+        return response()->json(['message' => 'Successfully logged out']); 
+    }
 }
